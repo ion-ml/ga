@@ -1,0 +1,16 @@
+{
+  "name": "ga-basic",
+  "version": "0.0.1",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint ./src/**/*.js",
+    "single": "node ./src/single.js",
+    "test": "nyc ./node_modules/.bin/mocha ./test/**/*",
+    "trial": "node ./src/trial.js"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.10.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
+  }
+}

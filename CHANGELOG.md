@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.1.1
+
+- Introduction of `./src/problems/royalRoad`
+
+---
+
 ## Version 0.1.0
 
 - Refactoring: move all of the core GA code into the `./src/ga` directory.

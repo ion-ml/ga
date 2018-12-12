@@ -7,6 +7,8 @@
     "om": "npm run one-max",
     "one-max-trial": "node ./src/problems/oneMax.trial.js",
     "omt": "npm run one-max-trial",
+    "royal-road": "node ./src/problems/royalRoad.single.js",
+    "rr": "npm run royal-road",  
     "test": "nyc ./node_modules/.bin/mocha ./test/**/*"
   },
   "dependencies": {

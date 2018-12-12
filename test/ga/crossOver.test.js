@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-const crossOver = require('../src/crossOver');
+const crossOver = require('../../src/ga/crossOver');
 
 describe('crossOver', () => {
   describe('generateRandomCrossOverPosition', () => {

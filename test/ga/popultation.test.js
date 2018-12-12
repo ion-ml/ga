@@ -1,5 +1,6 @@
 const expect = require('chai').expect;
-const population = require('../src/population');
+
+const population = require('../../src/ga/population');
 
 describe('population', () => {
   describe('generateRandomBit', () => {

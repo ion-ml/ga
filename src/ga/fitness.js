@@ -1,11 +1,19 @@
-const BASE_TEN = 10;
+const consts = require('./consts');
+
+const {
+  BASE_TEN,
+  DEFAULT_PROBLEM_DOMAIN,
+} = consts;
 
 const averageFitness = population =>
   sumFitness(populateFitness(population)) / population.length;
 
 const fitness = (bits) => bits.filter(bit => bit === 1).length;
 
-const populateFitness = (population) => {
+const populateFitness = (
+  population,
+  problemDomain = DEFAULT_PROBLEM_DOMAIN
+) => {
   if (Array.isArray(population) === false) return false;
 
   return population.map(row => {

@@ -1,4 +1,5 @@
 const calculateSchemaValues = require('./schema').calculateSchemaValues;
+const consts = require('./consts');
 const crossOver = require('./crossOver');
 const mutation = require('./mutation');
 const generatePopulation = require('./population').generatePopulation;
@@ -6,9 +7,12 @@ const populateFitness = require('./fitness').populateFitness;
 const sumFitness = require('./fitness').sumFitness;
 const selectByFitness = require('./selection').selectByFitness;
 
-const DEFAULT_SCHEMA = [1, 1];
-const DEFAULT_SCHEMA_DEFINING_ORDER = 2;
-const DEFAULT_SCHEMA_SCHEMA_ORDER = 3;
+const {
+  DEFAULT_PROBLEM_DOMAIN,
+  DEFAULT_SCHEMA,
+  DEFAULT_SCHEMA_DEFINING_ORDER,
+  DEFAULT_SCHEMA_SCHEMA_ORDER,
+} = consts;
 
 const average = (values) =>
   values.reduce((sum, value) => sum += value, 0) / values.length;
@@ -22,14 +26,15 @@ const ga = (
   mutationRate,
   schema = DEFAULT_SCHEMA,
   definingOrder = DEFAULT_SCHEMA_DEFINING_ORDER,
-  schemaOrder = DEFAULT_SCHEMA_SCHEMA_ORDER
+  schemaOrder = DEFAULT_SCHEMA_SCHEMA_ORDER,
+  problemDomain = DEFAULT_PROBLEM_DOMAIN,
 ) => {
-  const populationStart = generatePopulation(populationSize, numBits);
+  const populationStart = generatePopulation(populationSize, numBits, problemDomain);
   const numSelect = populationStart.length;
   const schemaValues = [];
 
   let population = populationStart;
-  const fitnessStart = sumFitness(populateFitness(population));
+  const fitnessStart = sumFitness(populateFitness(population, problemDomain));
 
   schemaValues.push(calculateSchemaValues(
     schema,
@@ -47,7 +52,8 @@ const ga = (
       numSelect,
       crossOverProbabilityThreshold,
       mutationProbabilityThreshold,
-      mutationRate
+      mutationRate,
+      problemDomain
     );
     schemaValues.push(calculateSchemaValues(
       schema,
@@ -56,12 +62,12 @@ const ga = (
       definingOrder,
       schemaOrder,
       crossOverProbabilityThreshold,
-      mutationProbabilityThreshold      
+      mutationProbabilityThreshold
     ));
     if (!population) break;
   }
 
-  const fitnessEnd = sumFitness(populateFitness(population));
+  const fitnessEnd = sumFitness(populateFitness(population, problemDomain));
   return { fitnessStart, fitnessEnd, population, schemaValues };
 };
 
@@ -70,9 +76,14 @@ const generateNextPopulation = (
   numSelect,
   crossOverProbabilityThreshold,
   mutationProbabilityThreshold,
-  mutationRate
+  mutationRate,
+  problemDomain
 ) => {
-  const selectionsByFitness = selectByFitness(population, numSelect);
+  const selectionsByFitness = selectByFitness(
+    population,
+    numSelect,
+    problemDomain
+  );
 
   if (!selectionsByFitness) return false;
 
@@ -135,7 +146,8 @@ const trial = (
   crossOverProbabilityThreshold,
   mutationProbabilityThreshold,
   mutationRate,
-  schema = DEFAULT_SCHEMA
+  schema = DEFAULT_SCHEMA,
+  problemDomain = DEFAULT_PROBLEM_DOMAIN,
 ) => {
   const fitnessEnds = [];
   const fitnessStarts = [];
@@ -149,7 +161,8 @@ const trial = (
       crossOverProbabilityThreshold,
       mutationProbabilityThreshold,
       mutationRate,
-      schema
+      schema,
+      problemDomain,
     );
     fitnessStarts.push(result.fitnessStart);
     fitnessEnds.push(result.fitnessEnd);

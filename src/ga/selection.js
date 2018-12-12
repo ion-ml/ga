@@ -1,14 +1,20 @@
+const consts = require('./consts');
 const fitness = require('./fitness');
 
-const DEGREES_MAX = 359;
-const DEGREES_MIN = 0;
+const {
+  DEFAULT_PROBLEM_DOMAIN,
+  DEGREES_MAX,
+  DEGREES_MIN,
+} = consts;
 
 const generateRandomRouletteWheelPosition = () =>
   Math.floor(Math.random() * DEGREES_MAX) + DEGREES_MIN;
 
-const generateRouletteWheel = (population, fit = fitness) => {
+const generateRouletteWheel = (
+  population,
+  fit = fitness
+) => {
   const { populateFitness, populateNormalisedFitness, sumFitness } = fit;
-
   const rouletteWheel = [];
   const populationLocal = populateFitness(population);
 
@@ -28,6 +34,7 @@ const generateRouletteWheel = (population, fit = fitness) => {
 const selectByFitness = (
   population,
   numSelect,
+  problemDomain = DEFAULT_PROBLEM_DOMAIN,
   genRouletteWheel = generateRouletteWheel
 ) => {
   const selectedPopulationRows = [];
@@ -47,7 +54,10 @@ const selectByFitness = (
   return selectedPopulationRows;
 };
 
-const selectRandomRouletteWheelValue = (rouletteWheel, position = null) => {
+const selectRandomRouletteWheelValue = (
+  rouletteWheel,
+  position = null
+) => {
   const positionLocal = position || generateRandomRouletteWheelPosition();
   return rouletteWheel[positionLocal];
 };

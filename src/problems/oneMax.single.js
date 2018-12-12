@@ -1,5 +1,9 @@
-const print = require('./print');
-const ga = require('./ga').ga;
+const consts = require('../ga/consts');
+const print = require('../ga/print');
+const ga = require('../ga').ga;
+
+const { DEFAULT_PROBLEM_DOMAIN } = consts;
+const { printSchemeValues, printSingleSummary } = print;
 
 const populationSize = 4;
 const numBits = 8;
@@ -11,8 +15,6 @@ const schema = [1, 1, 1];
 const definingOrder = 3;
 const schemaOrder = 3;
 
-const { printSchemeValues, printSingleSummary } = print;
-
 const { fitnessStart, fitnessEnd, schemaValues } = ga(
   populationSize,
   numBits,
@@ -22,7 +24,8 @@ const { fitnessStart, fitnessEnd, schemaValues } = ga(
   mutationRate,
   schema,
   definingOrder,
-  schemaOrder
+  schemaOrder,
+  DEFAULT_PROBLEM_DOMAIN
 );
 
 printSingleSummary(

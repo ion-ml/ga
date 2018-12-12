@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-const selection = require('../src/selection');
+const selection = require('../../src/ga/selection');
 
 const BASE_TEN = 10;
 
@@ -69,7 +69,7 @@ describe('selection', () => {
     });
     it(`should return false when the call to 'generateRouletteWheel' returns false`, () => {
       const genRouletteWheel = (population) => false;
-      expect(selectByFitness(population, numSelect, genRouletteWheel)).to.equal(false);
+      expect(selectByFitness(population, numSelect, null, genRouletteWheel)).to.equal(false);
     });
   });
 

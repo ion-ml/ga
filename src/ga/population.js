@@ -1,7 +1,16 @@
-const BIT_OFF = 0;
-const BIT_ON = 1;
+const consts = require('./consts');
 
-const generatePopulation = (populationSize, numBits) => {
+const {
+  BIT_OFF,
+  BIT_ON,
+  DEFAULT_PROBLEM_DOMAIN,
+} = consts;
+
+const generatePopulation = (
+  populationSize,
+  numBits,
+  problemDomain = DEFAULT_PROBLEM_DOMAIN
+) => {
   const population = [];
 
   for (var i = 0; i < populationSize; i++) {
@@ -14,9 +23,7 @@ const generatePopulation = (populationSize, numBits) => {
   return population;
 };
 
-const generateRandomBit = () => {
-  return Math.random() < 0.5 ? BIT_OFF : BIT_ON;
-};
+const generateRandomBit = () => Math.random() < 0.5 ? BIT_OFF : BIT_ON;
 
 const generateRandomBits = (numBits) => {
   const bitString = [];

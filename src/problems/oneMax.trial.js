@@ -1,5 +1,9 @@
-const print = require('./print');
-const trial = require('./ga').trial;
+const consts = require('../ga/consts');
+const print = require('../ga/print');
+const trial = require('../ga').trial;
+
+const { DEFAULT_PROBLEM_DOMAIN } = consts;
+const { printTrialSummary } = print;
 
 const trialSize = 100;
 const populationSize = 4;
@@ -10,8 +14,6 @@ const mutationProbabilityThreshold = 0.001;
 const mutationRate = 1;
 const schema = [1, 1];
 
-const { printTrialSummary } = print;
-
 const { fitnessStart, fitnessEnd } = trial(
   trialSize,
   populationSize,
@@ -20,7 +22,8 @@ const { fitnessStart, fitnessEnd } = trial(
   crossOverProbabilityThreshold,
   mutationProbabilityThreshold,
   mutationRate,
-  schema
+  schema,
+  DEFAULT_PROBLEM_DOMAIN
 );
 
 printTrialSummary(

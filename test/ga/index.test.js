@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 
-const ga = require('../src/ga');
-const generatePopulation = require('../src/population').generatePopulation;
+const ga = require('../../src/ga');
+const generatePopulation = require('../../src/ga/population').generatePopulation;
 
 
 describe('ga', () => {

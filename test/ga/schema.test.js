@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-const schema = require('../src/schema');
+const schema = require('../../src/ga/schema');
 
 describe('schema', () => {
   describe('calculateSchemaValues', () => {

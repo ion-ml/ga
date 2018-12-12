@@ -1,11 +1,11 @@
 const expect = require('chai').expect;
 
-const averageFitness = require('../src/fitness').averageFitness;
-const fitness = require('../src/fitness').fitness;
-const generatePopulation = require('../src/population').generatePopulation;
-const populateFitness = require('../src/fitness').populateFitness;
-const populateNormalisedFitness = require('../src/fitness').populateNormalisedFitness;
-const sumFitness = require('../src/fitness').sumFitness;
+const averageFitness = require('../../src/ga/fitness').averageFitness;
+const fitness = require('../../src/ga/fitness').fitness;
+const generatePopulation = require('../../src/ga/population').generatePopulation;
+const populateFitness = require('../../src/ga/fitness').populateFitness;
+const populateNormalisedFitness = require('../../src/ga/fitness').populateNormalisedFitness;
+const sumFitness = require('../../src/ga/fitness').sumFitness;
 
 describe('fitness', () => {
   describe('averageFitness', () => {

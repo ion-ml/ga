@@ -1,11 +1,13 @@
 {
   "name": "ga-basic",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./src/**/*.js",
-    "single": "node ./src/single.js",
-    "test": "nyc ./node_modules/.bin/mocha ./test/**/*",
-    "trial": "node ./src/trial.js"
+    "one-max": "node ./src/problems/oneMax.single.js",
+    "om": "npm run one-max",
+    "one-max-trial": "node ./src/problems/oneMax.trial.js",
+    "omt": "npm run one-max-trial",
+    "test": "nyc ./node_modules/.bin/mocha ./test/**/*"
   },
   "dependencies": {
     "chai": "^4.2.0",

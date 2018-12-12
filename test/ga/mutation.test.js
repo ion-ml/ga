@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-const mutation = require('../src/mutation');
+const mutation = require('../../src/ga/mutation');
 
 describe('mutation', () => {
 

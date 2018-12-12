@@ -1,11 +1,14 @@
 const expect = require('chai').expect;
 
 const averageFitness = require('../../src/ga/fitness').averageFitness;
+const consts = require('../../src/ga/consts');
 const fitness = require('../../src/ga/fitness').fitness;
 const generatePopulation = require('../../src/ga/population').generatePopulation;
 const populateFitness = require('../../src/ga/fitness').populateFitness;
 const populateNormalisedFitness = require('../../src/ga/fitness').populateNormalisedFitness;
 const sumFitness = require('../../src/ga/fitness').sumFitness;
+
+const { DEFAULT_PROBLEM_DOMAIN } = consts;
 
 describe('fitness', () => {
   describe('averageFitness', () => {
@@ -27,6 +30,11 @@ describe('fitness', () => {
       const bits = [0, 0, 0, 1, 0];
       expect(fitness(bits)).to.equal(1);
     });
+    it(`should return a fitness value of 1 when an bit array containing a single 1 and the 'problemDomain' is 'DEFAULT_PROBLEM_DOMAIN'`, () => {
+      const bits = [0, 0, 0, 1, 0];
+      const problemDomain = DEFAULT_PROBLEM_DOMAIN;
+      expect(fitness(bits, problemDomain)).to.equal(1);
+    });
     it('should return a fitness value of 1 when an bit array containing a single 1 is received (within the first position)', () => {
       const bits = [1, 0, 0, 0, 0];
       expect(fitness(bits)).to.equal(1);
@@ -42,6 +50,11 @@ describe('fitness', () => {
     it('should return a fitness value of 10 when an bit array containing ten 1s is received', () => {
       const bits = [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0];
       expect(fitness(bits)).to.equal(10);
+    });
+    it(`should return false when 'problemDomain' is NOT equal to 'DEFAULT_PROBLEM_DOMAIN'`, () => {
+      const bits = [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0];
+      const problemDomain = 'UNKNOWN_PROBLEM_DOMAIN';
+      expect(fitness(bits, problemDomain)).to.equal(false);
     });
   });
 

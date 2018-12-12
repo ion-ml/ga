@@ -8,11 +8,17 @@ const {
 const averageFitness = population =>
   sumFitness(populateFitness(population)) / population.length;
 
-const fitness = (bits) => bits.filter(bit => bit === 1).length;
+const fitness = (bits, problemDomain = DEFAULT_PROBLEM_DOMAIN) => {
+  if (problemDomain === DEFAULT_PROBLEM_DOMAIN) {
+    return bits.filter(bit => bit === 1).length;
+  }
+  return false;
+}
 
 const populateFitness = (
   population,
-  problemDomain = DEFAULT_PROBLEM_DOMAIN
+  problemDomain = DEFAULT_PROBLEM_DOMAIN,
+  fit = fitness,
 ) => {
   if (Array.isArray(population) === false) return false;
 
@@ -26,7 +32,7 @@ const populateFitness = (
     }
 
     return Object.assign({}, row, {
-      fitness: fitness(bits),
+      fitness: fit(bits, problemDomain),
     });
   });
 };

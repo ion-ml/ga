@@ -1,6 +1,6 @@
 {
   "name": "ga-basic",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./src/**/*.js",
     "one-max": "node ./src/problems/oneMax.single.js",
@@ -8,7 +8,7 @@
     "one-max-trial": "node ./src/problems/oneMax.trial.js",
     "omt": "npm run one-max-trial",
     "royal-road": "node ./src/problems/royalRoad.single.js",
-    "rr": "npm run royal-road",  
+    "rr": "npm run royal-road",
     "test": "nyc ./node_modules/.bin/mocha ./test/**/*"
   },
   "dependencies": {

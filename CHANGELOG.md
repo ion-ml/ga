@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.1.2
+
+- Introduction of `problemDomain` to `src/ga/fitness`.
+
+---
+
 ## Version 0.1.1
 
 - Introduction of `./src/problems/royalRoad`

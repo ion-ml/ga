@@ -7,6 +7,8 @@ const sumFitness = require('./fitness').sumFitness;
 const selectByFitness = require('./selection').selectByFitness;
 
 const DEFAULT_SCHEMA = [1, 1];
+const DEFAULT_SCHEMA_DEFINING_ORDER = 2;
+const DEFAULT_SCHEMA_SCHEMA_ORDER = 3;
 
 const average = (values) =>
   values.reduce((sum, value) => sum += value, 0) / values.length;
@@ -18,7 +20,9 @@ const ga = (
   crossOverProbabilityThreshold,
   mutationProbabilityThreshold,
   mutationRate,
-  schema = DEFAULT_SCHEMA
+  schema = DEFAULT_SCHEMA,
+  definingOrder = DEFAULT_SCHEMA_DEFINING_ORDER,
+  schemaOrder = DEFAULT_SCHEMA_SCHEMA_ORDER
 ) => {
   const populationStart = generatePopulation(populationSize, numBits);
   const numSelect = populationStart.length;
@@ -27,7 +31,15 @@ const ga = (
   let population = populationStart;
   const fitnessStart = sumFitness(populateFitness(population));
 
-  schemaValues.push(calculateSchemaValues(schema, population));
+  schemaValues.push(calculateSchemaValues(
+    schema,
+    population,
+    numBits,
+    definingOrder,
+    schemaOrder,
+    crossOverProbabilityThreshold,
+    mutationProbabilityThreshold
+  ));
 
   for (var i = 0; i < numIterations; i++) {
     population = generateNextPopulation(
@@ -37,7 +49,15 @@ const ga = (
       mutationProbabilityThreshold,
       mutationRate
     );
-    schemaValues.push(calculateSchemaValues(schema, population));
+    schemaValues.push(calculateSchemaValues(
+      schema,
+      population,
+      numBits,
+      definingOrder,
+      schemaOrder,
+      crossOverProbabilityThreshold,
+      mutationProbabilityThreshold      
+    ));
     if (!population) break;
   }
 

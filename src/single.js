@@ -8,6 +8,8 @@ const crossOverProbabilityThreshold = 0.7;
 const mutationProbabilityThreshold = 0.001;
 const mutationRate = 1;
 const schema = [1, 1, 1];
+const definingOrder = 3;
+const schemaOrder = 3;
 
 const { printSchemeValues, printSingleSummary } = print;
 
@@ -18,7 +20,9 @@ const { fitnessStart, fitnessEnd, schemaValues } = ga(
   crossOverProbabilityThreshold,
   mutationProbabilityThreshold,
   mutationRate,
-  schema
+  schema,
+  definingOrder,
+  schemaOrder
 );
 
 printSingleSummary(
